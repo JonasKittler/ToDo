@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap');
+li {
+    font-family: 'Dancing Script', cursive;
+}
+h1 {
+    font-family: 'Black Ops One', system-ui;
+}
+.button {
+    border-radius: 100%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0.5em;
+}
+.create {
+    font-family: 'Pacifico', cursive;
+    display: flex;
+    align-items: center;
+}
