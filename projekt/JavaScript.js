@@ -7,11 +7,34 @@ async function readTodos() {
     } const listItems = await response.json()
     listElement.innerHTML = ""
     listItems.forEach((items) => {
-        listElement.innerHTML += "<li>" + items.name + "</li>"
+        listElement.insertAdjacentHTML("beforeend", "<li>" + items.name + "<button class='button' data-id='" + items.id + "'><img src='./delete_FILL0_wght400_GRAD0_opsz24.svg' alt='smazat'></button></li>")
+        deleteButton = listElement.querySelector("button[data-id='" + items.id + "']")
+        deleteButton.addEventListener("click", async (event) => {
+            let button = event.currentTarget
+            let id = button.getAttribute("data-id")
+            deleteTodo(id)
+        })
     })
 }
 
+async function deleteTodo(id) {
+    const response = await fetch('http://www.petrzela.eu/todo/' + id,
+        {
+            method: 'DELETE',
+        }
+    )
+    if (!response.ok) {
+        console.log('Invalid server response code: ' + response.status)
+        return
+    }
+    readTodos()
+}
+
 readTodos()
+
+setInterval(() => {
+    readTodos()
+}, 1000)
 
 async function createTodo(ukol) {
     const response = await fetch(
